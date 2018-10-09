@@ -1,10 +1,9 @@
 etc_hosts
 =========
 
-Ansible role which contains a module that helps to manage the `/etc/hosts`
-file.
+Ansible role which helps to manage the `/etc/hosts` file.
 
-This module was originally submitted as a
+Module used by this role was originally submitted as a
 [PR](https://github.com/ansible/ansible/pull/19283) to Ansible but it was
 refused.
 
@@ -12,11 +11,32 @@ refused.
 Examples
 --------
 
-```
-- name: Example how to use the etc_hosts module
+```yaml
+- name: Example how to use the etc_hosts role
+  hosts: all
+  vars:
+    etc_hosts:
+      # Add simple record
+      - ip: 10.0.0.2
+        hostname: some.domain3.com
+      # Add record with aliases
+      - ip: 10.0.0.4
+        hostname: some.domain4.com
+        alias:
+          - some
+          - other
+          - alias
+      # Remove record
+      - ip: 10.0.0.4
+        hostname: some.domain4.com
+        state: absent
+  roles:
+    - etc_hosts
+
+- name: Example how to use the etc_hosts module in standalone mode
   hosts: all
   roles:
-    - hosts
+    - etc_hosts
   tasks:
     - name: Add a new record without alias
       etc_hosts:
@@ -79,25 +99,25 @@ Installation
 
 The role can be downloaded either via Ansible Galaxy command:
 
-```
-$ ansible-galaxy install jtyr.hosts,master,hosts
+```shell
+$ ansible-galaxy install jtyr.etc_hosts,master,etc_hosts
 ```
 
 or via Ansible Gallaxy requirements file:
 
-```
+```shell
 $ cat ./requirements.yaml
 ---
 
-- src: https://github.com/jtyr/ansible-hosts.git
-  name: hosts
+- src: https://github.com/jtyr/ansible-etc_hosts.git
+  name: etc_hosts
 $ ansible-galaxy -r ./requirements.yaml
 ```
 
 or via Git:
 
-```
-$ git clone https://github.com/jtyr/ansible-hosts.git hosts
+```shell
+$ git clone https://github.com/jtyr/ansible-etc_hosts.git etc_hosts
 ```
 
 

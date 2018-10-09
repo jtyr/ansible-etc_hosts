@@ -1,0 +1,7 @@
+---
+
+# List of hosts to create record for (see README for examples)
+etc_hosts: []
+
+# Default location of the hosts file
+etc_hosts_file: /etc/hosts

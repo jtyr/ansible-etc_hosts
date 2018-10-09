@@ -1,0 +1,10 @@
+---
+
+- name: Manage hosts records
+  etc_hosts:
+    alias: "{{ item.alias | default(omit) }}"
+    hostname: "{{ item.hostname | default(omit) }}"
+    ip: "{{ item.ip | default(omit) }}"
+    path: "{{ item.path | default(etc_hosts_file) }}"
+    state: "{{ item.state | default(omit) }}"
+  loop: "{{ etc_hosts }}"
