@@ -207,8 +207,8 @@ class EtcHosts(object):
                 details=str(e))
 
         # Splitting pattern
-        p_comment = re.compile("\s*#.*")
-        p_split = re.compile("\s+")
+        p_comment = re.compile(r"\s*#.*")
+        p_split = re.compile(r"\s+")
 
         for line in f:
             self.diff['before'] += line
